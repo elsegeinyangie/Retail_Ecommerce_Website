@@ -1,5 +1,5 @@
 <?php
 
 interface LoginStrategy {
-    public function handleLogin(string $email, string $password): void;
+    public function executeLogin($user);
 }

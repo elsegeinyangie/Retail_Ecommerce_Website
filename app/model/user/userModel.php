@@ -61,16 +61,30 @@ class UserModel extends Model
         }
     }
     // UserModel.php
-public function checkUserByEmail($email)
-{
-    $sql = "SELECT * FROM user WHERE email = '$email'";
-    $result = $this->db->query($sql);
+    public function getUserByEmail($email)
+    {
+        $sql = "SELECT * FROM user WHERE email = '$email'";
+        $result = $this->db->query($sql);
 
-    if ($result->num_rows > 0) {
-        return true; // User exists
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc(); // Return user details as an associative array
+        }
+        return null; // User does not exist
     }
-    return false; // User does not exist
-}
 
+    public function updatePassword($email, $hashedPassword) {
+        $query = "UPDATE users SET password = :password WHERE email = :email";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':password', $hashedPassword);
+            $stmt->bindParam(':email', $email);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            // Log the error for debugging purposes
+            error_log("Error updating password: " . $e->getMessage());
+            return false;
+        }
+    }
 
 }

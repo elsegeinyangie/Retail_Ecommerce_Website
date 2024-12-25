@@ -1,19 +1,18 @@
 <?php
 
+require_once("adminLoginStrategy.php");
+require_once("customerLoginStrategy.php");
+
 class LoginContext {
     private $strategy;
 
-    // Set the login strategy dynamically
     public function setStrategy(LoginStrategy $strategy) {
+        echo "inside setStrategy function inside of loginContext.php";
         $this->strategy = $strategy;
     }
 
-    // Execute the selected strategy's login method
-    public function executeLogin($email, $password) {
-        if ($this->strategy) {
-            $this->strategy->login($email, $password);
-        } else {
-            throw new \Exception("No login strategy has been set!");
-        }
+    public function redirectUser($user) {
+        echo "inside redirectUser function inside loginContext.php";
+        $this->strategy->executeLogin($user);
     }
 }
