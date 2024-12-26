@@ -1,6 +1,8 @@
 <?php
-require_once(__ROOT__ . "model/model.php");
-require_once(__ROOT__ . "model/user.php");
+
+
+require_once('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php');
+require_once('user.php');
 
 class UserModel extends Model
 {
@@ -14,7 +16,7 @@ class UserModel extends Model
     {
         $this->users = array();
         $this->db = $this->connect();
-        $result = $this->readUsers();
+        $result = $this->readAllUsers();
         while ($row = $result->fetch_assoc()) {
             array_push(
                 $this->users,
@@ -32,14 +34,14 @@ class UserModel extends Model
         }
     }
 
-    function getUsers()
+    function getAllUsers()
     {
         return $this->users;
     }
 
-    function readUsers()
+    function readAllUsers()
     {
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM users";
 
         $result = $this->db->query($sql);
         if ($result->num_rows > 0) {
@@ -49,9 +51,9 @@ class UserModel extends Model
         }
     }
 
-    function addUser($firstname, $lastname ,$email, $password, $role = "user", $address, $phone)
+    function addUser($firstname, $lastname ,$email, $password, $address, $phone, $role = "user",)
     {
-        $sql = "INSERT INTO user (firstname, lastname email, password, role, address, phone) VALUES
+        $sql = "INSERT INTO users (firstname, lastname email, password, role, address, phone) VALUES
         ('$firstname', '$lastname, '$email','$password', '$role', '$address', '$phone')";
         if ($this->db->query($sql) === true) {
             echo "Records inserted successfully.";
@@ -60,10 +62,9 @@ class UserModel extends Model
             echo "ERROR: Could not able to execute $sql. " .  $this->connect()->error;;
         }
     }
-    // UserModel.php
-    public function getUserByEmail($email)
+     function getUserByEmail($email)
     {
-        $sql = "SELECT * FROM user WHERE email = '$email'";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
         $result = $this->db->query($sql);
 
         if ($result->num_rows > 0) {
@@ -72,7 +73,7 @@ class UserModel extends Model
         return null; // User does not exist
     }
 
-    public function updatePassword($email, $hashedPassword) {
+     function updatePassword($email, $hashedPassword) {
         $query = "UPDATE users SET password = :password WHERE email = :email";
 
         try {
@@ -86,5 +87,27 @@ class UserModel extends Model
             return false;
         }
     }
+
+     function login($name, $password) {
+        // SQL query to find a user by name
+        $sql = "SELECT * FROM users WHERE Name = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        if ($result->num_rows == 1) {
+            $user = $result->fetch_assoc();
+    
+            // Verify the password (assuming password is hashed in the database)
+            if (password_verify($password, $user['Password'])) {
+                // Password matches, return user data or set a session
+                // Optionally, you could start a session or create a token here
+                return $user; // Successful login
+            }
+        }
+        return false; // Invalid username or password
+    }
+    
 
 }

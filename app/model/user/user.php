@@ -1,7 +1,7 @@
 <?php
-require_once(__ROOT__ . "model/model.php");
 
-include "enums.php";
+require_once ('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/enums.php');
+require_once ('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php');
 
 ?>
 
@@ -31,8 +31,8 @@ class User extends Model
       $this->lastname = $lastname;
       $this->email = $email;
       $this->password = $password;
-      $this->created_at = Date();
-      $this->role = $role;
+      $this->created_at = date("Y-m-d H:i:s");
+      $this->role = $role === "customer" ? Role::Customer : Role::Admin;
       $this->address = $address;
       $this->phone = $phone;
     }
@@ -81,7 +81,7 @@ class User extends Model
   }
   function setCreatedAt($created_at)
   {
-    return $this->created_at = Date();
+    return $this->created_at = date("Y-m-d H:i:s");
   }
 
   function getRole()
@@ -97,7 +97,7 @@ class User extends Model
   {
     return $this->phone;
   }
-  function setPHONE($phone)
+  function setPhone($phone)
   {
     return $this->phone = $phone;
   }
@@ -139,7 +139,7 @@ class User extends Model
       $this->lastname = "";
       $this->email = "";
       $this->password = "";
-      $this->created_at = Date();
+      $this->created_at = date("Y-m-d H:i:s");
       $this->role = "customer";
       $this->address = "";
       $this->phone = "";
