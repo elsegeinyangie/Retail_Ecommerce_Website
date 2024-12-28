@@ -44,7 +44,7 @@ class SignupController {
 
         // Add user to the database
         try {
-            $userModel->addUser($firstname, $lastname, $email, $hashedPassword, $role, $address, $phone);
+            $userModel->addUser($firstname, $lastname, $email, $hashedPassword, $address, $phone);
             header("Location: /login?success=signup_complete");
         } catch (Exception $e) {
             header("Location: /signup?error=server_error");

@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 interface LoginStrategy {
     public function login($user);
 }
@@ -11,7 +14,7 @@ class AdminLoginStrategy implements LoginStrategy {
         $_SESSION['user_id'] = $user['id'];
    
         // Redirect to admin dashboard
-        header("Location: ../../view/pages/admin/viewAdminDashboard.php");
+        header("Location: /Retail_Ecommerce_Website/old_code/admin1/index.php");
         exit();
     }
 }
@@ -25,8 +28,8 @@ class CustomerLoginStrategy implements LoginStrategy {
         $_SESSION['lastname'] = $user['lastname'];
         
         // Redirect to homepage
-        header("Location: ../../view/pages/user/ViewHome.php");
-        exit();
+        // header("Location: /Retail_Ecommerce_Website/public/home_page.php");
+        header("Location: /Retail_Ecommerce_Website/old_code/user/home_page.php");
     }
 }
 

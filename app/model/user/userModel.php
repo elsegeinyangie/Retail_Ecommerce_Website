@@ -1,6 +1,8 @@
 <?php
 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php');
 require_once('user.php');
 
@@ -51,17 +53,19 @@ class UserModel extends Model
         }
     }
 
-    function addUser($firstname, $lastname ,$email, $password, $address, $phone, $role = "user",)
-    {
-        $sql = "INSERT INTO users (firstname, lastname email, password, role, address, phone) VALUES
-        ('$firstname', '$lastname, '$email','$password', '$role', '$address', '$phone')";
+    function addUser($firstname, $lastname, $email, $password, $address, $phone) {
+        $sql = "INSERT INTO users (firstname, lastname, email, password, address, phone) VALUES
+        ('$firstname', '$lastname', '$email', '$password', '$address', '$phone')";
         if ($this->db->query($sql) === true) {
-            echo "Records inserted successfully.";
+            echo "Records inserted successfully.<br>";
             $this->fillArray();
+            return true;  // Return true to indicate success
         } else {
-            echo "ERROR: Could not able to execute $sql. " .  $this->connect()->error;;
+            echo "ERROR: Could not execute $sql. " . $this->db->error . "<br>";
+            return false;  // Return false to indicate failure
         }
     }
+    
      function getUserByEmail($email)
     {
         $sql = "SELECT * FROM users WHERE email = '$email'";
@@ -90,7 +94,7 @@ class UserModel extends Model
 
      function login($name, $password) {
         // SQL query to find a user by name
-        $sql = "SELECT * FROM users WHERE Name = ?";
+        $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $name);
         $stmt->execute();
