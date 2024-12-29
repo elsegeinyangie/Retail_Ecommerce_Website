@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once("config.php");
 class DBh{
 	private $servername;
@@ -49,6 +51,9 @@ class DBh{
 		return $result->fetch_assoc();
 	}
 
+	public function prepare($sql) { 
+		return $this->conn->prepare($sql); 
+	}
 	function __destruct(){
 		$this->conn->close();
 	}

@@ -1,12 +1,15 @@
 <?php
-require_once(__ROOT__ . "model/model.php");
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-include "enums.php";
+require_once ('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/enums.php');
+require_once ('/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php');
 
-?>
 
-<?php
-class User extends Model
+
+if (!class_exists('User')) {
+  class User extends Model
 {
   private $user_id;
   private $firstname;
@@ -31,9 +34,8 @@ class User extends Model
       $this->lastname = $lastname;
       $this->email = $email;
       $this->password = $password;
-      $this->created_at = Date();
-      $this->role = $role;
-      $this->address = $address;
+      $this->created_at = date("Y-m-d H:i:s");
+      $this->role = $role === "customer" ? Role::Customer : Role::Admin; // This is the specific line for the role assignment      $this->address = $address;
       $this->phone = $phone;
     }
   }
@@ -81,7 +83,7 @@ class User extends Model
   }
   function setCreatedAt($created_at)
   {
-    return $this->created_at = Date();
+    return $this->created_at = date("Y-m-d H:i:s");
   }
 
   function getRole()
@@ -97,7 +99,7 @@ class User extends Model
   {
     return $this->phone;
   }
-  function setPHONE($phone)
+  function setPhone($phone)
   {
     return $this->phone = $phone;
   }
@@ -120,35 +122,33 @@ class User extends Model
 
   function readUser($id)
   {
-    $sql = "SELECT * FROM user where user_id=" . $id;
+    $sql = "SELECT * FROM users where user_id=" . $id;
     $db = $this->connect();
     $result = $db->query($sql);
     if ($result->num_rows == 1) {
-      $row = $db->fetchRow();
-      $this->firstname = $row["firstname"];
+      $row = $result->fetch_assoc(); // Use $result to fetch the associative array      $this->firstname = $row["firstname"];
       $this->lastname = $row["lastname"];
       $_SESSION["firstname"] = $row["firstname"];
       $this->email = $row["email"];
-      $this->password = $row["Password"];
+      $this->password = $row["password"];
       $this->created_at = $row["created_at"];
-      $this->role = $row["role"];
-      $this->address = $row["address"];
+      $this->role = $row["role"] === "customer" ? Role::Customer : Role::Admin; // This is the specific line for the role assignment      $this->address = $row["address"];
       $this->phone = $row["phone"];
     } else {
       $this->firstname = "";
       $this->lastname = "";
       $this->email = "";
       $this->password = "";
-      $this->created_at = Date();
-      $this->role = "customer";
-      $this->address = "";
+      $this->created_at = date("Y-m-d H:i:s");
+      $this->role = Role::Customer; // Default role
+            $this->address = "";
       $this->phone = "";
     }
   }
 
   function editUser($firstname, $lastname, $email, $password, $address, $phone)
   {
-    $sql = "update user set firstname='$firstname', lastname='$lastname', email='$email', password='$password', address='$address', phone='$phone' where user_id=$this->user_id;";
+    $sql = "update users set firstname='$firstname', lastname='$lastname', email='$email', password='$password', address='$address', phone='$phone' where user_id=$this->user_id;";
     if ($this->db->query($sql) === true) {
       echo "updated successfully.";
       $this->readUser($this->user_id);
@@ -159,11 +159,12 @@ class User extends Model
 
   function deleteUser()
   {
-    $sql = "delete from user where id=$this->user_id;";
+    $sql = "delete from users where id=$this->user_id;";
     if ($this->db->query($sql) === true) {
       echo "deletet successfully.";
     } else {
       echo "ERROR: Could not able to execute $sql. " .  $this->connect()->error;
     }
   }
+}
 }
