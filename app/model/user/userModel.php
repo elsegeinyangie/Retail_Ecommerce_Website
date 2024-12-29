@@ -77,21 +77,33 @@ class UserModel extends Model
         return null; // User does not exist
     }
 
-     function updatePassword($email, $hashedPassword) {
-        $query = "UPDATE users SET password = :password WHERE email = :email";
+    // function updatePassword($email, $hashedPassword) {
+    //      $sql = "UPDATE users SET password = ? WHERE email = ?";
+    //      $stmt = $this->db->prepare($sql); 
+    //      if ($stmt) { 
+    //         $stmt->bind_param('ss', $hashedPassword, $email);
+    //          $result = $stmt->execute(); 
+    //          $stmt->close(); 
+    //          return $result; 
+    //         } else { 
+    //             error_log("Error preparing statement: " . $this->db->error); 
+    //             return false; 
+    //         } 
+    //     }
 
-        try {
-            $stmt = $this->db->prepare($query);
-            $stmt->bindParam(':password', $hashedPassword);
-            $stmt->bindParam(':email', $email);
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            // Log the error for debugging purposes
-            error_log("Error updating password: " . $e->getMessage());
-            return false;
-        }
-    }
-
+    function updatePassword($email, $newPassword) {
+         $query = "UPDATE users SET password = ? WHERE email = ?"; 
+         $stmt = $this->db->prepare($query); 
+         if ($stmt) { 
+            $stmt->bind_param('ss', $newPassword, $email); 
+             $result = $stmt->execute(); 
+             $stmt->close(); 
+             return $result; 
+            } else { 
+                error_log("Error preparing statement: " . $this->db->error); 
+                return false; 
+            } }
+    
      function login($name, $password) {
         // SQL query to find a user by name
         $sql = "SELECT * FROM users WHERE email = ?";

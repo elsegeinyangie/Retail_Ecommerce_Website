@@ -251,16 +251,29 @@ class ViewUser  {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                        <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/controller/userController.php?action=forgotPassword" method="POST">
+                        <form id="forgotPasswordForm" action="/Retail_Ecommerce_Website/public/auth.php?action=resetPassword" method="POST">
                             <div class="mb-3">
-                                <label for="resetEmail" class="form-label">Enter your email address:</label>
-                                <input type="email" class="form-control" id="resetEmail" name="resetEmail" required>
+                                <label for="email" class="form-label">Email address:</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                                <div class="invalid-feedback" id="emailError"></div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Reset Password</button>
+                            <div class="mb-3">
+                                <label for="new_password" class="form-label">New Password:</label>
+                                <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                                <div class="invalid-feedback" id="newPasswordError"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirm_password" class="form-label">Confirm Password:</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm new password" required>
+                                <div class="invalid-feedback" id="confirmPasswordError"></div>
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="submit-btn" name="resetPassword">Update Password</button>
+                            </div>
                         </form>
                     </div>
                 </div>

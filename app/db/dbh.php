@@ -51,6 +51,9 @@ class DBh{
 		return $result->fetch_assoc();
 	}
 
+	public function prepare($sql) { 
+		return $this->conn->prepare($sql); 
+	}
 	function __destruct(){
 		$this->conn->close();
 	}
