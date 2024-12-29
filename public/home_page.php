@@ -44,6 +44,8 @@ $navbarView = new ViewNavbar();
     echo $homeView->renderPromotions();
     echo $homeView->renderFooter();
     ?>
+    <?php include("hover_button.php"); ?>
+
 </body>
 
 </html>

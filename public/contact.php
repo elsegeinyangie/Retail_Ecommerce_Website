@@ -20,5 +20,7 @@ $contactView = new ViewContact();
         // Render the contact form
         echo $contactView->renderContactForm();
     ?>
+    <?php include("hover_button.php"); ?>
+
 </body>
 </html>
