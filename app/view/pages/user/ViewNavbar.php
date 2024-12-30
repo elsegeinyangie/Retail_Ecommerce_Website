@@ -161,7 +161,7 @@ class ViewNavbar {
                     </ul>
                 </div>';
         } else {
-            return '<a class="nav-link nav-item" href="login_page.php">Login</a>';
+            return '<a class="nav-link nav-item" href="/Retail_Ecommerce_Website/public/auth.php?action=login">Login</a>';
         }
     }
 }

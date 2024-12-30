@@ -1,8 +1,9 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 define('__ROOT__', dirname(__DIR__) . "../app/");
-require_once(__ROOT__ . "/view/pages/user/ViewHome.php");
-require_once(__ROOT__ . "/view/pages/user/ViewNavbar.php");
+require_once("../app/view/pages/user/ViewHome.php");
+require_once("../app/view/pages/user/ViewNavbar.php");
 
 $homeView = new ViewHome();
 $navbarView = new ViewNavbar();
@@ -20,23 +21,23 @@ $navbarView = new ViewNavbar();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .promo-box {
-            background-color: #f5f5f5;
-            padding: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
+    .promo-box {
+        background-color: #f5f5f5;
+        padding: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
 
-        .promo-box img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
+    .promo-box img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
     </style>
 </head>
 
 <body>
-<?php
+    <?php
     echo $navbarView->renderNavbar();
     ?>
     <?php
