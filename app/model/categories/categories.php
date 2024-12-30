@@ -17,7 +17,7 @@ class Category extends Model
     $this->db = $this->connect();
 
     if ("" === $category_name) {
-      $this->readCategory($id);
+      $this->readCategory($category_id);
     } else {
       $this->category_name = $category_name;
       $this->category_description = $category_description;
