@@ -40,16 +40,42 @@ class ViewAdminComponents {
                 });
             }
     
-            function showCategory() {  
-                $.ajax({
-                    url:"./adminView/viewCategories.php",
-                    method:"post",
-                    data:{record:1},
-                    success:function(data){
-                        $(".allContent-section").html(data);
-                    }
-                });
-            }
+           function showCategory() {  
+    $.ajax({
+        url: "/Retail_Ecommerce_Website/app/controller/categoryActions.php",
+        method: "POST",
+        data: { action: "show", record: 1 },
+        success: function(data) {
+            $(".allContent-section").html(data);
+        }
+    });
+}
+
+
+function addCategory(category_name, category_description) {
+    $.ajax({
+        url: "/Retail_Ecommerce_Website/app/controller/categoryActions.php",
+        method: "post",
+        data: { action: "add", category_name: category_name, category_description: category_description },
+        success: function(response) {
+            alert("Category Added Successfully");
+            add();
+        }
+    });
+}
+
+function deleteCategory(id) {
+    $.ajax({
+        url: "/Retail_Ecommerce_Website/app/controller/categoryActions.php",
+        method: "post",
+        data: { action: "delete", id: id },
+        success: function(response) {
+            alert("Category Deleted Successfully");
+            showCategory();
+        }
+    });
+}
+
     
             function showSizes() {  
                 $.ajax({

@@ -14,14 +14,14 @@ class Orders extends Model
   private $total_amount;
   private OrderStatus $order_status;
 
-  function __construct($order_id, $user_id, $order_date = "", $total_amount = "", $order_status = "pending")
+  function __construct($order_id, $user_id, $order_date = "", $total_amount = 0.0, $order_status = "pending")
   {
     $this->order_id = $order_id;
     $this->user_id = $user_id;
     $this->db = $this->connect();
 
     if ("" === $order_date) {
-      $this->readUser($id);
+      $this->readOrder($order_id);
     } else {
       $this->order_date = $order_date;
       $this->total_amount = $total_amount;
@@ -54,9 +54,7 @@ public function setTotalAmount($total_amount){
     $this->total_amount = $total_amount;
 }
 
-public function getOrderItemsList() {
-    return $this->orderItems;
-}   
+
 
 function readOrder($order_id)
 {
@@ -70,7 +68,7 @@ function readOrder($order_id)
         $row = $result->fetch_assoc();
 
         // Assign the order data to the class properties
-        $this->order_ = $row["order_"];
+        $this->order_id = $row["order_id"];
         $this->user_id = $row["user_id"];
         $this->order_date = $row["order_date"];
         $this->total_amount = $row["total_amount"];

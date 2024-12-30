@@ -40,10 +40,10 @@ class PaymentsModel extends Model {
         }
     }
 
-    function addPayment($order_id, $amount, $payment_method, $payment_date) {
+    function addPayment($order_id, $amount, $payment_method) {
         // SQL query to insert a new product into the payments table
-        $sql = "INSERT INTO payment (order_id, amount, payment_method, payment_date) 
-                VALUES ('$order_id', '$amount', '$payment_method', '$payment_date')";
+        $sql = "INSERT INTO payment (order_id, amount, payment_method) 
+                VALUES ('$order_id', '$amount', '$payment_method')";
         if ($this->db->query($sql) === true) {
             echo "payments inserted successfully.";
             $this->fillArray(); // Refresh the payments array

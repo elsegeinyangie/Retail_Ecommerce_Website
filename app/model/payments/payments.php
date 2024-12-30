@@ -15,18 +15,17 @@ class Payment extends Model
 
 
   
-  function __construct($payment_id, $order_id, $amount = "", $payment_method = "cash", $payment_date = "")
+  function __construct($payment_id, $order_id, $amount = "", $payment_method = "cash")
   {
     $this->payment_id = $payment_id;
     $this->order_id = $order_id;
     $this->db = $this->connect();
 
     if ("" === $amount) {
-      $this->readPayment($id);
+      $this->readPayment($payment_id);
     } else {
       $this->amount = $amount;
       $this->payment_method = $payment_method;
-      $this->payment_date = $payment_date;
     }
   }
 

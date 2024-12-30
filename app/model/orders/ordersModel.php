@@ -23,10 +23,7 @@ class OrdersModel extends Model {
                 $row["order_status"]
             );
     
-            // Load and assign order items to the order
-            $orderItems = $order->getOrderItems();
-            $order->orderItems = $orderItems; // Add a property to hold order items
-    
+            // Load and assign order items to the order    
             $this->orders[] = $order;
         }
     }
@@ -47,10 +44,10 @@ class OrdersModel extends Model {
         }
     }
 
-    function addOrder($user_id, $order_date, $total_amount, $order_status) {
+    function addOrder($user_id, $total_amount, $order_status) {
         // SQL query to insert a new order into the orders table
-        $sql = "INSERT INTO orders (user_id, order_date, total_amount, order_status) 
-                VALUES ('$user_id',$order_date', '$total_amount', '$order_status')";
+        $sql = "INSERT INTO orders (user_id, total_amount, order_status) 
+                VALUES ('$user_id', '$total_amount', '$order_status')";
         if ($this->db->query($sql) === true) {
             echo "Order inserted successfully.";
             $this->fillArray(); // Refresh the orders array
