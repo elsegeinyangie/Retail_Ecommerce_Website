@@ -104,11 +104,11 @@ class UserModel extends Model
                 return false; 
             } }
     
-     function login($name, $password) {
-        // SQL query to find a user by name
+     function login($email, $password) {
+        // SQL query to find a user by email
         $sql = "SELECT * FROM users WHERE email = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("s", $name);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
     

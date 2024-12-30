@@ -20,13 +20,12 @@ class OrderItemsModel extends Model {
                 $row["order_id"],
                 $row["product_id"],
                 $row["quantity"],
-                $row["price"],
             ));
         }
     }
 
     function getOrderItemsByOrderId($order_id) {
-        return $this->orderItems; 
+        // return $this->orderItems; 
         $allOrderItems = array_filter($this->orderItems, function($item) use ($order_id) {
             return $item->order_id == $order_id; // Filter orderItems by order_id
         });
@@ -44,10 +43,10 @@ class OrderItemsModel extends Model {
         }
     }
 
-    function addOrderItem($order_id, $product_id, $quantity, $price) {
+    function addOrderItem($order_id, $product_id, $quantity) {
         // SQL query to insert a new order_item into the orderItems table
-        $sql = "INSERT INTO orderItems (order_id, product_id, quantity, price) 
-                VALUES ('$order_id',$product_id', '$quantity', '$price')";
+        $sql = "INSERT INTO orderItems (order_id, product_id, quantity) 
+                VALUES ('$order_id',$product_id', '$quantity')";
         if ($this->db->query($sql) === true) {
             echo "Order Item inserted successfully.";
             $this->fillArray(); // Refresh the orderItems array

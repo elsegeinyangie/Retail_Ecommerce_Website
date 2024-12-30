@@ -22,11 +22,11 @@ class Review extends Model
     $this->db = $this->connect();
 
     if ("" === $rating) {
-      $this->readReview($id);
+      $this->readReview($review_id);
     } else {
       $this->rating = $rating;
       $this->review = $review;
-      $this->created_at = Date();
+    //   $this->created_at = Date();
     }
   }
 

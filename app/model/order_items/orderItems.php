@@ -9,21 +9,19 @@ class OrderItem extends Model
   private $order_item_id;
   private $product_id;
   private $quantity;
-  private $price;
   
   
-  function __construct($order_id, $order_item_id, $product_id, $quantity = "", $price = "")
+  function __construct($order_id, $order_item_id, $product_id, $quantity = 0)
   {
     $this->order_id = $order_id;
     $this->order_item_id = $order_item_id;
     $this->product_id = $product_id;
     $this->db = $this->connect();
 
-    if ("" === $qunatity) {
-      $this->readOrderItem($id);
+    if ("" === $quantity) {
+      $this->readOrderItem($order_item_id);
     } else {
       $this->quantity = $quantity;
-      $this->price = $price;
     }
   }
 
@@ -52,13 +50,6 @@ public function setQuantity($quantity){
     $this->quantity = $quantity;
 }
 
-public function getPrice(){
-    return $this->price;
-}
-
-public function setPrice($price){
-    $this->price = $price;
-}
 
 
 function readOrderItem($order_item_id)
@@ -77,14 +68,12 @@ function readOrderItem($order_item_id)
         $this->order_item_id = $row["order_item_id"];
         $this->product_id = $row["product_id"];
         $this->quantity = $row["quantity"];
-        $this->price = $row["price"];
 
         // Optionally, you could store this in a session if needed
         $_SESSION["quantity"] = $row["quantity"];
     } else {
         // Set attributes to empty values if no order_item is found
         $this->quantity = "";
-        $this->price = "";
     }
 }
 
