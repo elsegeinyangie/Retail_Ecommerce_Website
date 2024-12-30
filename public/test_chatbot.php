@@ -1,7 +1,8 @@
 <?php
-// Variable to store the chatbot response
+// Initialize the chatbot response variable
 $chatbot_response = '';
 
+// Check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get the message from the form input
     $message = $_POST['message'];
@@ -41,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     curl_close($ch);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -150,4 +150,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
     </div>
 </body>
-</html>
+</html> 

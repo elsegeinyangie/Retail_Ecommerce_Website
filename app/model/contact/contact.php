@@ -1,7 +1,7 @@
 <?php
 // Contact.php
 //require_once(__ROOT__ . "model/model.php");
-require_once(__ROOT__ . "/app/model/model.php");
+
 
 class Contact extends Model
 {
