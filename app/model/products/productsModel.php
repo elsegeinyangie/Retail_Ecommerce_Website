@@ -22,8 +22,9 @@ class ProductsModel extends Model {
                 $row["product_description"],
                 $row["product_price"],
                 $row["stock_quantity"],
-                $row["created_at"],
-                $row["product_image"]
+                $row["product_image"],
+                $row["product_size"],
+                $row["product-color"]
             ));
         }
     }
@@ -43,10 +44,10 @@ class ProductsModel extends Model {
         }
     }
 
-    function addProduct($product_name, $product_description, $product_price, $stock_quantity, $product_image) {
+    function addProduct($product_name, $product_description, $product_price, $stock_quantity, $product_image, $product_size, $product_color) {
         // SQL query to insert a new product into the products table
-        $sql = "INSERT INTO products (product_name, product_description, product_price, stock_quantity, product_image) 
-                VALUES ('$product_name', '$product_description', '$product_price', '$stock_quantity', '$product_image')";
+        $sql = "INSERT INTO products (product_name, product_description, product_price, stock_quantity, product_image, product_size, product_color) 
+                VALUES ('$product_name', '$product_description', '$product_price', '$stock_quantity', '$product_image', '$product_size', '$product_color')";
         if ($this->db->query($sql) === true) {
             echo "Product inserted successfully.";
             $this->fillArray(); // Refresh the products array

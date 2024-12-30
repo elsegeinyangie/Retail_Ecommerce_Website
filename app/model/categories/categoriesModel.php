@@ -1,4 +1,3 @@
-
 <?php
 require_once(__ROOT__ . "model/model.php");
 require_once(__ROOT__ . "category.php");
@@ -16,7 +15,7 @@ class CategoryModel extends Model {
         $result = $this->readCategories(); // Get categories from the database
         while ($row = $result->fetch_assoc()) {
             // Assuming Product class has a constructor matching the table columns
-            array_push($this->categories, new Product(
+            array_push($this->categories, new Category(
                 $row["category_id"],
                 $row["category_name"],
                 $row["category_description"],
