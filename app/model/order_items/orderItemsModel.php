@@ -1,6 +1,6 @@
 <?php
-require_once(__ROOT__ . "../model.php");
-require_once(__ROOT__ . "/order_items/orderItems.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php");
+require_once("orderItems.php");
 
 class OrderItemsModel extends Model {
 	private $orderItems; 

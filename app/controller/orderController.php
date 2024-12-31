@@ -1,6 +1,6 @@
 <?php
 
-require_once(__ROOT__ . "../../controller/controller.php");
+require_once("/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/controller/controller.php");
 class OrderController extends Controller{
 	//add order
     public function add() {

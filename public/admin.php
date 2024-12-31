@@ -369,8 +369,10 @@ $viewAdminComponents = new ViewAdminComponents();
 </head>
 
 <body>
-    <?php echo $viewAdminComponents->renderAdminHeader(); ?>
-    <?php echo $viewAdminComponents->renderSidebar(); ?>
+    <?php 
+    echo $viewAdminComponents->renderAdminHeader(); 
+     echo $viewAdminComponents->renderSidebar();
+      ?>
 
     <div id="main-content" class="container allContent-section py-4">
         <div class="row">

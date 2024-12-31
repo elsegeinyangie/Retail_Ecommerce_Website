@@ -19,10 +19,10 @@ class ViewAdminComponents {
                 <hr style="border:1px solid; background-color:#8a7b6d; border-color:#3B3131;">
 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 <a href="/Retail_Ecommerce_Website/public/admin.php"><i class="fa fa-home"></i> Dashboard</a>
-<a href="/Retail_Ecommerce_Website/app/view/pages/admin/viewCustomers.php" onclick="showCustomers()"><i class="fa fa-users"></i> Customers</a>
-<a href="/Retail_Ecommerce_Website/app/view/pages/admin/viewCategories.php" onclick="showCategory()"><i class="fa fa-th-large"></i> Category</a>
-<a href="/Retail_Ecommerce_Website/app/view/pages/admin/viewProducts.php" onclick="showProductItems()"><i class="fa fa-th"></i> Products</a>
-<a href="/Retail_Ecommerce_Website/app/view/pages/admin/viewOrders.php" onclick="showOrders()"><i class="fa fa-list"></i> Orders</a>
+<a href="/Retail_Ecommerce_Website/old_code/admin1/viewCustomers.php" onclick="showCustomers()"><i class="fa fa-users"></i> Customers</a>
+<a href="/Retail_Ecommerce_Website/old_code/admin1/viewCategories.php" onclick="showCategory()"><i class="fa fa-th-large"></i> Category</a>
+<a href="/Retail_Ecommerce_Website/old_code/admin1/viewAllProducts.php" onclick="showProductItems()"><i class="fa fa-th"></i> Products</a>
+<a href="/Retail_Ecommerce_Website/old_code/admin1/viewAllOrders.php" onclick="showOrders()"><i class="fa fa-list"></i> Orders</a>
 
             </div>
             <div id="main">

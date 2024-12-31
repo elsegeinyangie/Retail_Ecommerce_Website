@@ -1,9 +1,7 @@
-
-
 <?php
-define('__ROOT__', dirname(__DIR__));
-require_once(__ROOT__ . "../model.php");
-require_once(__ROOT__ . "/orders/orders.php");
+// define('__ROOT__', dirname(__DIR__));
+require_once("/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/model/model.php");
+require_once("orders.php");
 
 class OrdersModel extends Model {
 	private $orders; 

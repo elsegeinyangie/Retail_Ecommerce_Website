@@ -8,8 +8,8 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Check if the Model class is already declared to avoid redeclaration
 if (!class_exists('Model')) {
-
-    require_once(__ROOT__ . "../../db/dbh.php");
+    
+    require_once("/Applications/XAMPP/xamppfiles/htdocs/Retail_Ecommerce_Website/app/db/DBh.php");
 
 
     abstract class Model {
