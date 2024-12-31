@@ -23,7 +23,7 @@ class OrdersModel extends Model {
                 $row["user_id"],
                 $row["order_date"],
                 $row["total_amount"],
-                $row["order_status"]
+                $row["status"]
             );
     
             // Load and assign order items to the order    
