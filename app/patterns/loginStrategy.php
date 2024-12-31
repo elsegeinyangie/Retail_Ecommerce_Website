@@ -14,7 +14,7 @@ class AdminLoginStrategy implements LoginStrategy {
         $_SESSION['user_id'] = $user['id'];
    
         // Redirect to admin dashboard
-        header("Location: /Retail_Ecommerce_Website/old_code/admin1/index.php");
+        header("Location: /Retail_Ecommerce_Website/public/admin.php");
         exit();
     }
 }
@@ -29,7 +29,7 @@ class CustomerLoginStrategy implements LoginStrategy {
         
         // Redirect to homepage
         // header("Location: /Retail_Ecommerce_Website/public/home_page.php");
-        header("Location: /Retail_Ecommerce_Website/old_code/user/home_page.php");
+        header("Location: /Retail_Ecommerce_Website/public/home_page.php");
     }
 }
 
