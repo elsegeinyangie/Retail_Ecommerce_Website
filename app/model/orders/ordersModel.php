@@ -1,6 +1,9 @@
+
+
 <?php
-require_once(__ROOT__ . "model/model.php");
-require_once(__ROOT__ . "orders.php");
+define('__ROOT__', dirname(__DIR__));
+require_once(__ROOT__ . "../model.php");
+require_once(__ROOT__ . "/orders/orders.php");
 
 class OrdersModel extends Model {
 	private $orders; 

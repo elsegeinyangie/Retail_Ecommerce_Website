@@ -8,8 +8,12 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Check if the Model class is already declared to avoid redeclaration
 if (!class_exists('Model')) {
+<<<<<<< Updated upstream
     require_once('C:\\xampp\\htdocs\\Retail_Ecommerce_Website-1\\app\\db\\DBh.php');
 
+=======
+    require_once(__ROOT__ . "../../db/dbh.php");
+>>>>>>> Stashed changes
 
     abstract class Model {
         protected $db;

@@ -1,7 +1,7 @@
 <?php
-  require_once(__ROOT__ . "model/model.php");
-  require_once(__ROOT__ . "model/order_items_model.php"); // Include the OrderItems model
-  include "enums.php";
+  require_once(__ROOT__ . "../model.php");
+  require_once(__ROOT__ . "/order_items/orderItemsModel.php"); // Include the OrderItems model
+  include_once(__ROOT__ . '../enums.php');
 
 ?>
 

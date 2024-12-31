@@ -1,7 +1,6 @@
 <?php
 
-require_once(__ROOT__ . "controller.php");
-
+require_once(__ROOT__ . "../../controller/controller.php");
 class OrderController extends Controller{
 	//add order
     public function add() {
